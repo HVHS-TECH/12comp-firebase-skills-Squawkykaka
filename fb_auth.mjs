@@ -1,6 +1,6 @@
 //**************************************************************/
-// fb_io.mjs
-// Generalised firebase routines
+// fb_auth.mjs
+// Firebase auth module
 // Written by <Your Name Here>, Term 2 202?
 //
 // All variables & function begin with fb_  all const with FB_
@@ -8,35 +8,40 @@
 /**************************************************************/
 const COL_C = "white"; // These two const are part of the coloured
 const COL_B = "#CD7F32"; //  console.log for functions scheme
-console.log("%c fb_io.mjs", "color: blue; background-color: white;");
+console.log("%c fb_auth.mjs", "color: blue; background-color: white;");
 
 /**************************************************************/
 // Import all external constants & functions required
 /**************************************************************/
 // Import all the methods you want to call from the firebase modules
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-import { getDatabase } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
-
-// import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
 //**********************************
-// Firebase configuration
-const FB_GAMECONFIG = {
-  apiKey: "AIzaSyAKJ4yC-PXdQfaWMQRMWumS85GaGPpvbLE",
-  authDomain: "comp-2025-george-leask.firebaseapp.com",
-  projectId: "comp-2025-george-leask",
-  storageBucket: "comp-2025-george-leask.firebasestorage.app",
-  messagingSenderId: "727231405255",
-  appId: "1:727231405255:web:9f4f51e64681939067b2e2",
-  measurementId: "G-3LTSMW0XGY",
-};
+// Firebase auth
 
-function fb_initialise() {
-  const FB_GAMEAPP = initializeApp(FB_GAMECONFIG);
-  const FB_GAMEDB = getDatabase(FB_GAMEAPP);
-  //   const analytics = getAnalytics(app);
-  console.info(FB_GAMEDB);
+function fb_auth() {
+  const AUTH = getAuth();
+  const PROVIDER = new GoogleAuthProvider();
+
+  // The following makes Google ask the user to select the account
+
+  PROVIDER.setCustomParameters({
+    prompt: "select_account",
+  });
+
+  signInWithPopup(AUTH, PROVIDER)
+    .then((result) => {
+      console.info("authentication success, result: " + result);
+    })
+
+    .catch((error) => {
+      console.info("authentication fail, error: " + error);
+    });
 }
 
 /**************************************************************/
@@ -44,7 +49,7 @@ function fb_initialise() {
 // List all the functions called by code or html outside of this module
 /**************************************************************/
 
-export { fb_initialise };
+export { fb_auth };
 
 /**************************************************************/
 // END OF CODE

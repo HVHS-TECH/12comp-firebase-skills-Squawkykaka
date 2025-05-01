@@ -17,6 +17,7 @@ console.log("%c fb_io.mjs", "color: blue; background-color: white;");
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
 import { getDatabase } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+export let FB_GAMEDB, FB_GAMEAPP;
 
 // import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
 
@@ -32,9 +33,9 @@ const FB_GAMECONFIG = {
   measurementId: "G-3LTSMW0XGY",
 };
 
-function fb_initialise() {
-  const FB_GAMEAPP = initializeApp(FB_GAMECONFIG);
-  const FB_GAMEDB = getDatabase(FB_GAMEAPP);
+async function fb_initialise() {
+  FB_GAMEAPP = initializeApp(FB_GAMECONFIG);
+  FB_GAMEDB = getDatabase(FB_GAMEAPP);
   //   const analytics = getAnalytics(app);
   console.info(FB_GAMEDB);
 }

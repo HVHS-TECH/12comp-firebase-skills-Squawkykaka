@@ -32,7 +32,9 @@
     <section>
       <div class="container">
         <div class="column">
-          <button onclick="fb_initialise()">t03: initialise firebase</button>
+          <button onclick="fb_initialise()" id="button_fbInitialise">
+            t03: initialise firebase
+          </button>
           <button onclick="fb_auth()">t04: authenticate</button>
           <button onclick="fb_authchange()">t05: detect login change</button>
           <button onclick="fb_logout()">t06: logout</button>
@@ -42,7 +44,9 @@
           <button onclick="fb_write('/bob/thing', 'stuff')">
             t07: write record
           </button>
-          <button onclick="">t08: read record</button>
+          <button onclick="console.log(fb_read('/bob/thing'))">
+            t08: read record
+          </button>
           <button onclick="">t09: read all</button>
           <button onclick="">t10: update record</button>
         </div>
@@ -61,23 +65,38 @@
         firebase status
     ************************************************************-->
     <footer id="s_fbStatus">
-      <div style="padding: 8px">
-        <p class="p_fbStatus">login: <span id="p_fbLogin"> n/a</span></p>
-        <p class="p_fbStatus">write rec: <span id="p_fbWriteRec"> n/a</span></p>
-        <p class="p_fbStatus">read rec: <span id="p_fbReadRec"> n/a</span></p>
-        <p class="p_fbStatus">read all: <span id="p_fbReadAll"> n/a</span></p>
-        <p class="p_fbStatus">
-          update rec: <span id="p_fbUpdateRec"> n/a</span>
-        </p>
-        <p class="p_fbStatus">
-          read sorted:<span id="p_fbReadSorted">n/a</span>
-        </p>
+      <div style="padding: 8px" class="container">
+        <div class="column">
+          <p class="p_fbStatus">
+            Initialised: <span id="p_fbInitialise"> n/a</span>
+          </p>
+          <p class="p_fbStatus">
+            Authenticated: <span id="p_fbAuthenticate"> n/a</span>
+          </p>
+          <p class="p_fbStatus">login: <span id="p_fbLogin"> n/a</span></p>
+          <p class="p_fbStatus">
+            write rec: <span id="p_fbWriteRec"> n/a</span>
+          </p>
+        </div>
 
-        <p class="p_fbStatus">listen: <span id="p_fbListen"> n/a</span></p>
-        <p class="p_fbStatus">
-          delete rec: <span id="p_fbDeleteRec"> n/a</span>
-        </p>
-        <p class="p_fbStatus">debug: <span id="p_debug"> n/a</span></p>
+        <div class="column">
+          <p class="p_fbStatus">read rec: <span id="p_fbReadRec"> n/a</span></p>
+          <p class="p_fbStatus">read all: <span id="p_fbReadAll"> n/a</span></p>
+          <p class="p_fbStatus">
+            update rec: <span id="p_fbUpdateRec"> n/a</span>
+          </p>
+          <p class="p_fbStatus">
+            read sorted:<span id="p_fbReadSorted">n/a</span>
+          </p>
+        </div>
+
+        <div class="column">
+          <p class="p_fbStatus">listen: <span id="p_fbListen"> n/a</span></p>
+          <p class="p_fbStatus">
+            delete rec: <span id="p_fbDeleteRec"> n/a</span>
+          </p>
+          <p class="p_fbStatus">debug: <span id="p_debug"> n/a</span></p>
+        </div>
       </div>
     </footer>
 

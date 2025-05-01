@@ -6,8 +6,7 @@
 // All variables & function begin with fb_  all const with FB_
 // Diagnostic code lines have a comment appended to them //DIAG
 /**************************************************************/
-const COL_C = "white"; // These two const are part of the coloured
-const COL_B = "#CD7F32"; //  console.log for functions scheme
+
 console.log("%c fb_io.mjs", "color: blue; background-color: white;");
 
 /**************************************************************/
@@ -31,6 +30,8 @@ const FB_GAMECONFIG = {
   messagingSenderId: "727231405255",
   appId: "1:727231405255:web:9f4f51e64681939067b2e2",
   measurementId: "G-3LTSMW0XGY",
+  databaseURL:
+    "https://comp-2025-george-leask-default-rtdb.asia-southeast1.firebasedatabase.app/",
 };
 
 async function fb_initialise() {
@@ -38,6 +39,10 @@ async function fb_initialise() {
   FB_GAMEDB = getDatabase(FB_GAMEAPP);
   //   const analytics = getAnalytics(app);
   console.info(FB_GAMEDB);
+
+  document.getElementById("p_fbInitialise").innerHTML = "Initialised";
+  document.getElementById("button_fbInitialise").setAttribute("disabled", true);
+  document.getElementById("button_fbInitialise").innerHTML = "Initialised";
 }
 
 /**************************************************************/

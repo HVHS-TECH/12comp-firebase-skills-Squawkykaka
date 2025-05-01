@@ -3,8 +3,7 @@
 // Main entry for index.html
 // Written by <Your Name Here>, Term 2 202?
 /**************************************************************/
-const COL_C = "white"; // These two const are part of the coloured
-const COL_B = "#CD7F32"; //  console.log for functions scheme
+
 console.log("%c main.mjs", "color: blue; background-color: white;");
 
 /**************************************************************/
@@ -23,8 +22,9 @@ window.fb_authchange = fb_authchange;
 import { fb_logout } from "./fb_logout.mjs";
 window.fb_logout = fb_logout;
 
-import { fb_write } from "./fb_write.mjs";
+import { fb_write, fb_read } from "./fb_readwrite.mjs";
 window.fb_write = fb_write;
+window.fb_read = fb_read;
 
 /**************************************************************/
 // index.html main code

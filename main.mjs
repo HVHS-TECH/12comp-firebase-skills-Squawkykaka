@@ -18,11 +18,18 @@ window.fb_auth = fb_auth;
 window.fb_authchange = fb_authchange;
 window.fb_logout = fb_logout;
 
-import { fb_write, fb_read, fb_read_path, fb_update } from "./fb_readwrite.mjs";
+import {
+  fb_write,
+  fb_read,
+  fb_read_path,
+  fb_update,
+  //   fb_yeet,
+} from "./fb_readwrite.mjs";
 window.fb_write = fb_write;
 window.fb_read = fb_read;
 window.fb_read_path = fb_read_path;
 window.fb_update = fb_update;
+// window.fb_yeet = fb_yeet;
 
 /**************************************************************/
 // index.html main code

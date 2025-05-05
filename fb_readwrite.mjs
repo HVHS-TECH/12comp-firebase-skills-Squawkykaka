@@ -19,8 +19,10 @@ import {
   set,
   get,
   update,
+  // remove,
 } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
 import { FB_GAMEDB } from "./fb_io.mjs";
+// import { FB_GAMEDB, GUY_DB } from "./fb_io.mjs";
 
 // Writes data to a path
 function fb_write(path, data) {
@@ -91,11 +93,24 @@ function fb_update(path, data) {
     });
 }
 
+// function fb_yeet() {
+//   const dbRef = ref(GUY_DB, "/");
+//   remove(dbRef)
+//     .then(() => {
+//       console.log("Successfully removed the record");
+//       document.getElementById("p_fbDeleteRec").innerHTML = "Record removed";
+//     })
+//     .catch((error) => {
+//       console.log("Error removing the record: " + error);
+//     });
+// }
+
 /**************************************************************/
 // EXPORT FUNCTIONS
 // List all the functions called by code or html outside of this module
 /**************************************************************/
 
+// export { fb_write, fb_read, fb_read_path, fb_update, fb_yeet };
 export { fb_write, fb_read, fb_read_path, fb_update };
 
 /**************************************************************/

@@ -50,13 +50,15 @@
           <button onclick="console.log(fb_read_path('/bob/'))">
             t09: read all
           </button>
-          <button onclick="fb_update('/bob/thing', 'woooooo update!!!!!')">
+          <button onclick="fb_update('/bob', {thing: 'woooooo update!!!!'})">
             t10: update record
           </button>
         </div>
 
         <div class="column">
           <button onclick="">t11: sorted read</button>
+          <!-- <button onclick="fb_yeet()">heckerman yeet</button> -->
+
           <!-- EXTENSIONS
                 <button onclick="">ext(a): listen for changes</button>
                 <button onclick="">ext(b): delete record</button>

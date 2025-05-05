@@ -17,6 +17,7 @@ console.log("%c fb_io.mjs", "color: blue; background-color: white;");
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
 import { getDatabase } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
 export let FB_GAMEDB, FB_GAMEAPP;
+// export let GUY_DB, GUY_APP;
 
 // import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
 
@@ -34,9 +35,26 @@ const FB_GAMECONFIG = {
     "https://comp-2025-george-leask-default-rtdb.asia-southeast1.firebasedatabase.app/",
 };
 
+// const GUY_CONFIG = {
+//   apiKey: "AIzaSyCkKH0pJ-Fo9axQNsBswxIwZyuruG1X6ts",
+//   authDomain: "comp-2025-idrees-munshi-24d0e.firebaseapp.com",
+//   databaseURL:
+//     "https://comp-2025-idrees-munshi-24d0e-default-rtdb.asia-southeast1.firebasedatabase.app",
+//   projectId: "comp-2025-idrees-munshi-24d0e",
+//   storageBucket: "comp-2025-idrees-munshi-24d0e.firebasestorage.app",
+//   messagingSenderId: "811934625308",
+//   appId: "1:811934625308:web:a1ff1ffffdcab01bcd79d9",
+//   measurementId: "G-7P3VZN9ZFD",
+// };
+
 async function fb_initialise() {
   FB_GAMEAPP = initializeApp(FB_GAMECONFIG);
   FB_GAMEDB = getDatabase(FB_GAMEAPP);
+
+  // GUY_APP = initializeApp(GUY_CONFIG);
+  // GUY_DB = getDatabase(GUY_APP);
+  // console.info(GUY_DB);
+
   //   const analytics = getAnalytics(app);
   console.info(FB_GAMEDB);
 

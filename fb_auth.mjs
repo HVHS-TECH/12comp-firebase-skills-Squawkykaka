@@ -18,6 +18,8 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
+  onAuthStateChanged,
+  signOut,
 } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
 //**********************************
@@ -37,10 +39,48 @@ function fb_auth() {
     .then((result) => {
       console.info("authentication success, result: " + result);
       console.info(result.user);
+      document.getElementById("p_fbLogin").innerHTML = result.user.displayName;
+      document.getElementById("p_fbAuthenticate").innerHTML = true;
     })
 
     .catch((error) => {
       console.info("authentication fail, error: " + error);
+    });
+}
+
+function fb_authchange() {
+  const AUTH = getAuth();
+
+  // this function auto-triggers, having it as a button is pointless
+  onAuthStateChanged(
+    AUTH,
+    (user) => {
+      if (user) {
+        console.info(
+          "The user " + user.displayName + " is signed in: " + user.email
+        );
+      } else {
+        console.info("No user is signed in");
+      }
+    },
+    (error) => {
+      console.info("Error in authchange: " + error);
+    }
+  );
+}
+
+function fb_logout() {
+  const AUTH = getAuth();
+
+  signOut(AUTH)
+    .then(() => {
+      console.info("Sign-out successful.");
+      document.getElementById("p_fbLogin").innerHTML = "n/a";
+      document.getElementById("p_fbAuthenticate").innerHTML = false;
+    })
+
+    .catch((error) => {
+      console.info("Sign-out failed: " + error);
     });
 }
 
@@ -49,7 +89,7 @@ function fb_auth() {
 // List all the functions called by code or html outside of this module
 /**************************************************************/
 
-export { fb_auth };
+export { fb_auth, fb_authchange, fb_logout };
 
 /**************************************************************/
 // END OF CODE

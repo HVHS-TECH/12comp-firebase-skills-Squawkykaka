@@ -13,18 +13,16 @@ console.log("%c main.mjs", "color: blue; background-color: white;");
 import { fb_initialise } from "./fb_io.mjs";
 window.fb_initialise = fb_initialise;
 
-import { fb_auth } from "./fb_auth.mjs";
+import { fb_auth, fb_authchange, fb_logout } from "./fb_auth.mjs";
 window.fb_auth = fb_auth;
-
-import { fb_authchange } from "./fb_authchange.mjs";
 window.fb_authchange = fb_authchange;
-
-import { fb_logout } from "./fb_logout.mjs";
 window.fb_logout = fb_logout;
 
-import { fb_write, fb_read } from "./fb_readwrite.mjs";
+import { fb_write, fb_read, fb_read_path, fb_update } from "./fb_readwrite.mjs";
 window.fb_write = fb_write;
 window.fb_read = fb_read;
+window.fb_read_path = fb_read_path;
+window.fb_update = fb_update;
 
 /**************************************************************/
 // index.html main code

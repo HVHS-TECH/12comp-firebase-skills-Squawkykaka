@@ -18,9 +18,11 @@ import {
   ref,
   set,
   get,
+  update,
 } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
 import { FB_GAMEDB } from "./fb_io.mjs";
 
+// Writes data to a path
 function fb_write(path, data) {
   const dbRef = ref(FB_GAMEDB, path);
   set(dbRef, data)
@@ -34,6 +36,7 @@ function fb_write(path, data) {
     });
 }
 
+// Reads data from a specific object
 function fb_read(path) {
   const dbRef = ref(FB_GAMEDB, path);
   get(dbRef)
@@ -43,7 +46,7 @@ function fb_read(path) {
       if (fb_data != null) {
         console.info(fb_data);
         document.getElementById("p_fbReadRec").innerHTML = fb_data;
-        return fb_data;
+        // return fb_data;
       } else {
         console.error("That data is null");
         throw "That path does not exist";
@@ -55,12 +58,45 @@ function fb_read(path) {
     });
 }
 
+// Read data from a path, returns an object
+function fb_read_path(path) {
+  const dbRef = ref(FB_GAMEDB, path);
+  get(dbRef)
+    .then((snapshot) => {
+      var fb_data = snapshot.val();
+
+      if (fb_data != null) {
+        console.info(fb_data);
+        document.getElementById("p_fbReadAll").innerHTML = fb_data;
+        // return fb_data;
+      } else {
+        console.error("That data is null");
+        throw "That path does not exist";
+      }
+    })
+    .catch((error) => {
+      console.error("Request failed: " + error);
+      throw "Request failed";
+    });
+}
+
+function fb_update(path, data) {
+  const dbRef = ref(FB_GAMEDB, path);
+  update(dbRef, data)
+    .then(() => {
+      console.log("Data written to " + path + " successfully.");
+    })
+    .catch((error) => {
+      throw "Error: " + error;
+    });
+}
+
 /**************************************************************/
 // EXPORT FUNCTIONS
 // List all the functions called by code or html outside of this module
 /**************************************************************/
 
-export { fb_write, fb_read };
+export { fb_write, fb_read, fb_read_path, fb_update };
 
 /**************************************************************/
 // END OF CODE

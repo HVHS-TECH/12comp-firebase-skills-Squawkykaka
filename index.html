@@ -47,8 +47,12 @@
           <button onclick="console.log(fb_read('/bob/thing'))">
             t08: read record
           </button>
-          <button onclick="">t09: read all</button>
-          <button onclick="">t10: update record</button>
+          <button onclick="console.log(fb_read_path('/bob/'))">
+            t09: read all
+          </button>
+          <button onclick="fb_update('/bob/thing', 'woooooo update!!!!!')">
+            t10: update record
+          </button>
         </div>
 
         <div class="column">

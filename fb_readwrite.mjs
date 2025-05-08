@@ -19,7 +19,9 @@ import {
   set,
   get,
   update,
-  // remove,
+  query,
+  orderByChild,
+  limitToFirst,
 } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
 import { FB_GAMEDB } from "./fb_io.mjs";
 // import { FB_GAMEDB, GUY_DB } from "./fb_io.mjs";
@@ -93,6 +95,27 @@ function fb_update(path, data) {
     });
 }
 
+function fb_readSorted(path) {
+  const dbRef = query(
+    ref(FB_GAMEDB, path),
+    orderByChild("order"),
+    limitToFirst(10)
+  );
+  // get(dbRef)
+  //   .then((snapshot) => {
+  //     var fb_data = snapshot.val();
+  //     if (fb_data != null) {
+  //       console.info(fb_data);
+  //       document.getElementById("p_fbReadSorted").innerHTML = fb_data;
+  //     } else {
+  //       throw "The data is null";
+  //     }
+  //   })
+  //   .catch((error) => {
+  //     throw "Error: " + error;
+  //   });
+}
+
 // function fb_yeet() {
 //   const dbRef = ref(GUY_DB, "/");
 //   remove(dbRef)
@@ -111,7 +134,7 @@ function fb_update(path, data) {
 /**************************************************************/
 
 // export { fb_write, fb_read, fb_read_path, fb_update, fb_yeet };
-export { fb_write, fb_read, fb_read_path, fb_update };
+export { fb_write, fb_read, fb_read_path, fb_update, fb_readSorted };
 
 /**************************************************************/
 // END OF CODE

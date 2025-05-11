@@ -95,25 +95,22 @@ function fb_update(path, data) {
     });
 }
 
-function fb_readSorted(path) {
+function fb_readSorted() {
   const dbRef = query(
-    ref(FB_GAMEDB, path),
-    orderByChild("order"),
+    ref(FB_GAMEDB, "Stuff"),
+    orderByChild("score"),
     limitToFirst(10)
   );
-  // get(dbRef)
-  //   .then((snapshot) => {
-  //     var fb_data = snapshot.val();
-  //     if (fb_data != null) {
-  //       console.info(fb_data);
-  //       document.getElementById("p_fbReadSorted").innerHTML = fb_data;
-  //     } else {
-  //       throw "The data is null";
-  //     }
-  //   })
-  //   .catch((error) => {
-  //     throw "Error: " + error;
-  //   });
+  get(dbRef)
+    .then((snapshot) => {
+      snapshot.forEach((snapshot) => {
+        var obj = snapshot.val();
+        console.info(obj);
+      });
+    })
+    .catch((error) => {
+      throw "Error: " + error;
+    });
 }
 
 // function fb_yeet() {

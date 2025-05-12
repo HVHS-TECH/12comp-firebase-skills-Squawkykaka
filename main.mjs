@@ -24,6 +24,7 @@ import {
   fb_read_path,
   fb_update,
   fb_readSorted,
+  fb_fillRandomData,
   //   fb_yeet,
 } from "./fb_readwrite.mjs";
 window.fb_write = fb_write;
@@ -31,6 +32,7 @@ window.fb_read = fb_read;
 window.fb_read_path = fb_read_path;
 window.fb_update = fb_update;
 window.fb_readSorted = fb_readSorted;
+window.fb_fillRandomData = fb_fillRandomData;
 
 // window.fb_yeet = fb_yeet;
 

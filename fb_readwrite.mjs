@@ -21,7 +21,7 @@ import {
   update,
   query,
   orderByChild,
-  limitToFirst,
+  limitToLast,
 } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
 import { FB_GAMEDB } from "./fb_io.mjs";
 // import { FB_GAMEDB, GUY_DB } from "./fb_io.mjs";
@@ -99,18 +99,28 @@ function fb_readSorted() {
   const dbRef = query(
     ref(FB_GAMEDB, "Stuff"),
     orderByChild("score"),
-    limitToFirst(10)
+    limitToLast(10)
   );
   get(dbRef)
     .then((snapshot) => {
+      var scoreList = [];
       snapshot.forEach((snapshot) => {
-        var obj = snapshot.val();
-        console.info(obj);
+        scoreList.push(snapshot.val());
       });
+
+      scoreList.reverse();
+      console.log(scoreList);
     })
     .catch((error) => {
       throw "Error: " + error;
     });
+}
+
+function fb_fillRandomData() {
+  for (let i = 0; i < 100; i++) {
+    const dbRef = ref(FB_GAMEDB, `Stuff/${i}/score`);
+    set(dbRef, Math.floor(Math.random() * 1000)).then(console.log("Sucess"));
+  }
 }
 
 // function fb_yeet() {
@@ -131,7 +141,14 @@ function fb_readSorted() {
 /**************************************************************/
 
 // export { fb_write, fb_read, fb_read_path, fb_update, fb_yeet };
-export { fb_write, fb_read, fb_read_path, fb_update, fb_readSorted };
+export {
+  fb_write,
+  fb_read,
+  fb_read_path,
+  fb_update,
+  fb_readSorted,
+  fb_fillRandomData,
+};
 
 /**************************************************************/
 // END OF CODE
